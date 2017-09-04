@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Bonnier\WP\Cache\Settings;
 
 class SettingsPage
@@ -18,7 +17,7 @@ class SettingsPage
         'host_url' => [
             'type' => 'text',
             'name' => 'Cache Host URL',
-        ]
+        ],
     ];
 
     private $settingsValues;
@@ -35,16 +34,16 @@ class SettingsPage
         return $this->get_setting_value('host_url') ?: '';
     }
 
-    function print_error($error)
+    public function print_error($error)
     {
         $out = "<div class='error settings-error notice is-dismissible'>";
-        $out .= "<strong>" . self::NOTICE_PREFIX . "</strong><p>$error</p>";
-        $out .= "</div>";
-        print $out;
+        $out .= '<strong>'.self::NOTICE_PREFIX."</strong><p>$error</p>";
+        $out .= '</div>';
+        echo $out;
     }
 
     /**
-     * Add options page
+     * Add options page.
      */
     public function add_plugin_page()
     {
@@ -54,46 +53,43 @@ class SettingsPage
             self::Settings_PAGE_NAME,
             'manage_options',
             self::SETTINGS_PAGE,
-            array($this, 'create_admin_page')
+            [$this, 'create_admin_page']
         );
     }
 
     /**
-     * Options page callback
+     * Options page callback.
      */
     public function create_admin_page()
     {
-        // Set class property
-
-        ?>
+        // Set class property?>
         <div class="wrap">
             <form method="post" action="options.php">
                 <?php
                 // This prints out all hidden setting fields
                 settings_fields(self::SETTINGS_GROUP);
-                do_settings_sections(self::SETTINGS_PAGE);
-                submit_button();
-                ?>
+        do_settings_sections(self::SETTINGS_PAGE);
+        submit_button(); ?>
             </form>
         </div>
         <?php
     }
 
     /**
-     * Register and add settings
+     * Register and add settings.
      */
     public function register_settings()
     {
         register_setting(
             self::SETTINGS_GROUP, // Option group
             self::SETTINGS_KEY, // Option name
-            array($this, 'sanitize') // Sanitize
+            [$this, 'sanitize'] // Sanitize
         );
 
         add_settings_section(
             self::SETTINGS_SECTION, // ID
             self::Settings_PAGE_TITLE, // Title
-            array($this, 'print_section_info'), // Callback
+            [$this, 'print_section_info'], // Callback
             self::SETTINGS_PAGE // Page
         );
 
@@ -101,7 +97,7 @@ class SettingsPage
             add_settings_field(
                 $settingsKey, // ID
                 $settingField['name'], // Title
-                array($this, $settingsKey), // Callback
+                [$this, $settingsKey], // Callback
                 self::SETTINGS_PAGE, // Page
                 self::SETTINGS_SECTION // Section
             );
@@ -109,9 +105,10 @@ class SettingsPage
     }
 
     /**
-     * Sanitize each setting field as needed
+     * Sanitize each setting field as needed.
      *
      * @param array $input Contains all settings fields as array keys
+     *
      * @return array
      */
     public function sanitize($input)
@@ -126,8 +123,8 @@ class SettingsPage
                 if ($settingsField['type'] === 'text' || $settingsField['type'] === 'select') {
                     $sanitizedInput[$fieldKey] = sanitize_text_field($input[$fieldKey]);
                 }
-                if($settingsField['type'] === 'callback') {
-                    $sanitizedInput[$fieldKey] =call_user_func_array($settingsField['sanitize_callback'], [$input[$fieldKey]]);
+                if ($settingsField['type'] === 'callback') {
+                    $sanitizedInput[$fieldKey] = call_user_func_array($settingsField['sanitize_callback'], [$input[$fieldKey]]);
                 }
             }
         }
@@ -136,17 +133,19 @@ class SettingsPage
     }
 
     /**
-     * Print the Section text
+     * Print the Section text.
      */
     public function print_section_info()
     {
-        print 'Enter your settings below:';
+        echo 'Enter your settings below:';
     }
 
     /**
-     * Catch callbacks for creating setting fields
+     * Catch callbacks for creating setting fields.
+     *
      * @param string $function
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return bool
      */
     public function __call($function, $arguments)
@@ -163,13 +162,14 @@ class SettingsPage
 
     public function get_setting_value($settingKey)
     {
-        if(!$this->settingsValues) {
+        if (!$this->settingsValues) {
             $this->settingsValues = get_option(self::SETTINGS_KEY);
         }
 
         if (isset($this->settingsValues[$settingKey]) && !empty($this->settingsValues[$settingKey])) {
             return $this->settingsValues[$settingKey];
         }
+
         return false;
     }
 
@@ -183,12 +183,11 @@ class SettingsPage
         }
 
         return [];
-
     }
 
     private function create_settings_field($field, $fieldKey)
     {
-        $fieldName = self::SETTINGS_KEY . "[$fieldKey]";
+        $fieldName = self::SETTINGS_KEY."[$fieldKey]";
         $fieldOutput = false;
 
         if ($field['type'] === 'text') {
@@ -206,19 +205,18 @@ class SettingsPage
             $options = $this->get_select_field_options($field);
             foreach ($options as $option) {
                 $selected = ($option['system_key'] === $fieldValue) ? 'selected' : '';
-                $fieldOutput .= "<option value='" . $option['system_key'] . "' $selected >" . $option['system_key'] . "</option>";
+                $fieldOutput .= "<option value='".$option['system_key']."' $selected >".$option['system_key'].'</option>';
             }
-            $fieldOutput .= "</select>";
+            $fieldOutput .= '</select>';
         }
-        if($field['type'] === 'callback') {
-
+        if ($field['type'] === 'callback') {
             $fieldValue = isset($this->settingsValues[$fieldKey]) ? $this->settingsValues[$fieldKey] : [];
 
             call_user_func_array($field['callback'], [$fieldName, $fieldValue]);
         }
 
         if ($fieldOutput) {
-            print $fieldOutput;
+            echo $fieldOutput;
         }
     }
 }

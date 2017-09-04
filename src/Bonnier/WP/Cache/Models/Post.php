@@ -9,8 +9,8 @@ class Post
 {
     private static $settings;
 
-    public static function watch_post_changes(SettingsPage $settingsPage) {
-
+    public static function watch_post_changes(SettingsPage $settingsPage)
+    {
         self::$settings = $settingsPage;
 
         add_action('save_post', [__CLASS__, 'update_post']);
