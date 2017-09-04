@@ -5,7 +5,7 @@
  * Description: Bonnier Cache Plugin
  * Version: 1.0.0
  * Author: Magnus Flor
- * Author URI: http://bonnierpublications.com
+ * Author URI: http://bonnierpublications.com.
  */
 
 namespace Bonnier\WP\Cache;
@@ -14,16 +14,16 @@ use Bonnier\WP\Cache\Models\Post;
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
 
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+defined('ABSPATH') or die('No script kiddies please!');
 
 spl_autoload_register(function ($className) {
     if (strpos($className, __NAMESPACE__) !== false) {
-        $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);
-        require_once(__DIR__ . DIRECTORY_SEPARATOR . WpBonnierCache::CLASS_DIR . DIRECTORY_SEPARATOR . $className . '.php');
+        $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+        require_once __DIR__.DIRECTORY_SEPARATOR.WpBonnierCache::CLASS_DIR.DIRECTORY_SEPARATOR.$className.'.php';
     }
 });
 
-require_once( __DIR__ . '/includes/vendor/autoload.php' );
+require_once __DIR__.'/includes/vendor/autoload.php';
 
 class WpBonnierCache
 {
@@ -63,7 +63,7 @@ class WpBonnierCache
 
     public static function instance()
     {
-        if(!self::$instance) {
+        if (!self::$instance) {
             self::$instance = new self();
             global $wp_bonnier_cache;
             $wp_bonnier_cache = self::$instance;
