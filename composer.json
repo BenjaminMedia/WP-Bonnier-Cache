@@ -31,26 +31,11 @@
                     "junaidbhura/composer-wp-pro-plugins": "*"
                 }
             }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "junaidbhura/polylang-pro",
-                "version": "2.3.8",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://www.polylang.pro"
-                },
-                "require": {
-                    "junaidbhura/composer-wp-pro-plugins": "*"
-                }
-            }
         }
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "bonnier/contenthub-editor": "^4.0",
+        "bonnier/contenthub-editor": "^5.0",
         "bonnier/willow-mu-plugins": "^1.1"
     },
     "require-dev": {
