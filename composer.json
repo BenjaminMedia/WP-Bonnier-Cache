@@ -35,7 +35,7 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "bonnier/willow-mu-plugins": "^1.1"
+        "bonnier/willow-mu-plugins": "^2.0"
     },
     "require-dev": {
         "johnpbloch/wordpress": "^4.9"
