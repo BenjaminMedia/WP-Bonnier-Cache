@@ -2,8 +2,8 @@
 
 namespace Bonnier\WP\Cache\Commands;
 
+use Bonnier\Willow\Base\Models\WpComposite;
 use Bonnier\WP\Cache\Services\CacheApi;
-use Bonnier\WP\ContentHub\Editor\Models\WpComposite;
 use Exception;
 use Illuminate\Support\Collection;
 use WP_CLI;
@@ -11,7 +11,7 @@ use WP_CLI_Command;
 
 class CacheCommand extends WP_CLI_Command
 {
-    const CMD_NAMESPACE = 'bonnier-cache';
+    private const CMD_NAMESPACE = 'bonnier-cache';
 
     protected $type = 'cxense';
 

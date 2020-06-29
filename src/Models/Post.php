@@ -2,9 +2,9 @@
 
 namespace Bonnier\WP\Cache\Models;
 
+use Bonnier\Willow\Base\Models\WpComposite;
 use Bonnier\Willow\MuPlugins\Helpers\LanguageProvider;
 use Bonnier\WP\Cache\Services\CacheApi;
-use Bonnier\WP\ContentHub\Editor\Models\WpComposite;
 use WP_Post;
 
 class Post
