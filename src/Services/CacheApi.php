@@ -21,7 +21,7 @@ class CacheApi
     public static function bootstrap()
     {
         $hostUrl = getenv('CACHE_MANAGER_HOST');
-        if (is_null($hostUrl)) {
+        if ($hostUrl == null || $hostUrl == '') {
             add_action('admin_notices', function () {
                 echo sprintf(
                     '<div class="error notice"><p>%s</p></div>',
