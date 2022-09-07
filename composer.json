@@ -21,7 +21,7 @@
             "type": "package",
             "package": {
                 "name": "junaidbhura/advanced-custom-fields-pro",
-                "version": "5.7.2",
+                "version": "5.12.2",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
@@ -35,11 +35,11 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "bonnier/contenthub-editor": "^5.0",
-        "bonnier/willow-mu-plugins": "^1.1"
+        "bonnier/contenthub-editor": "^5.28",
+        "bonnier/willow-mu-plugins": "^2.0"
     },
     "require-dev": {
-        "johnpbloch/wordpress": "^4.9"
+        "johnpbloch/wordpress": "^5.8"
     },
     "autoload": {
         "psr-4": {
