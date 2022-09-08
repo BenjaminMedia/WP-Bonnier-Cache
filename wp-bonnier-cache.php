@@ -3,7 +3,7 @@
  * Plugin Name: WP Bonnier Cache
  * Plugin URI: http://bonnierpublications.com
  * Description: Bonnier Cache Plugin
- * Version: 5.0.4
+ * Version: 5.0.5
  * Author: Magnus Flor
  * Author URI: http://bonnierpublications.com
  */
