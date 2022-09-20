@@ -34,7 +34,8 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.3",
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.4",
         "bonnier/contenthub-editor": "^5.28",
         "bonnier/willow-mu-plugins": "^2.0"
     },
